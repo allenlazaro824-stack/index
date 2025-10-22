@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PhotoGrid App</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    padding: 30px 10px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  nav a {
+    margin: 0 12px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover {
+    color: #fffa8b;
+  }
+
+  .profile {
+    text-align: center;
+    margin: 30px auto;
+  }
+
+  .profile img {
+    border-radius: 50%;
+    width: 130px;
+    border: 3px solid #fff;
+  }
+
+  .profile p {
+    font-style: italic;
+    opacity: 0.9;
+  }
+
+  form {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 500px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  input, textarea, button {
+    margin: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+  }
+
+  textarea {
+    width: 90%;
+    resize: none;
+  }
+
+  button {
+    background: #ff6ec4;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: #ff3ea7;
+  }
+
+  #feed {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin: 30px 0;
+  }
+
+  .post {
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .post img, .post video {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .likes {
+    font-weight: bold;
+    margin-left: 8px;
+  }
+
+  .comments {
+    margin-top: 10px;
+    font-style: italic;
+    opacity: 0.9;
+  }
+
+  input[type="text"] {
+    width: 90%;
+  }
+</style>
+
+</head>
+<body>
+  <header>
+    <h1>PhotoGrid</h1>
+    <input type="file" id="upload" accept="image/*">
+  </header>
+
+  <main id="photo-feed"></main>
+
+  <script src="script.js"></script>
+</body>
+</html>

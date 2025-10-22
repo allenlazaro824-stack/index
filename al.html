@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <title>Ukurasa Uliochanganywa</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+       
+</head>
+<body>
+
+    <div class="container">
+        <h2>Picha ya Wasifu (Profile)</h2>
+        <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS Maalum kwa ajili ya Duara */
+        .profile-photo {
+            /* Mitindo ya Duara */
+            width: 150px;       
+            height: 150px;      
+            border-radius: 50%; /* HII NDIYO HUFANYA IWE DUARA */
+            object-fit:cover;  /* Inahakikisha picha inajaza nafasi */
+            border: 5px solid #3b82f6; /* Mpaka mzuri wa buluu */
+            transition: transform 0.3s ease-in-out;
+        }
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-start justify-center p-4">
+
+    <div class="w-full max-w-lg bg-white shadow-xl rounded-xl p-8 mt-10">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Mfumo wa Kupakia Picha</h1>
+        
+        <!-- SEHEMU YA KUONYESHA PICHA -->
+        <div class="mb-8 text-center">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Wasifu wa Picha</h3>
+            <!-- Picha ya Wasifu (Placeholder) -->
+            <img 
+                id="previewImage" 
+                src="https://placehold.co/150x150/e0e7ff/3b82f6?text=Chagua+Picha" 
+                alt="Picha ya Wasifu" 
+                class="profile-photo mx-auto border-dashed border-2 border-gray-300">
+            <p id="fileNameDisplay" class="text-sm text-gray-500 mt-2">Hakuna picha iliyochaguliwa.</p>
+        </div>
+
+        <!-- SEHEMU YA KU-UPLOAD (Fomu) -->
+        <form id="uploadForm" class="border-t pt-6">
+            <label for="photoInput" class="block text-sm font-medium text-gray-700 mb-2 text-left">
+                Chagua Picha ya Kupakia
+            </label>
+            
+            <input 
+                type="file" 
+                id="photoInput" 
+                name="profile_image" 
+                accept="image/*" 
+                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                required>
+
+            <button 
+                type="submit" 
+                class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out">
+                Tuma Picha kwa Seva (Backend)
+            </button>
+        </form>
+        
+        <p class="mt-4 text-xs text-red-500 text-center">
+            *Kumbuka: Kitufe cha 'Tuma' hakihifadhi picha. Huhitaji **Backend (Seva)** ili picha ihifadhiwe kabisa.*
+        </p>
+    </div>
+
+    <!-- JAVASCRIPT: LOGIC YA KUONYESHA PICHA PAPO HAPO -->
+    <script>
+        document.getElementById('photoInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const previewImage = document.getElementById('previewImage');
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+
+            if (file) {
+                // 1. Tumia FileReader kusoma faili iliyochaguliwa
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // 2. Weka matokeo (data URL) kama chanzo (src) cha picha
+                    previewImage.src = e.target.result;
+                    fileNameDisplay.textContent = 'Picha iliyochaguliwa: ' + file.name;
+                    // Ondoa mpaka wa dash baada ya picha kuchaguliwa
+                    previewImage.classList.remove('border-dashed', 'border-2', 'border-gray-300');
+                };
+
+                // Soma faili kama Data URL
+                reader.readAsDataURL(file);
+            } else {
+                // Rudisha Placeholder ikiwa hakuna faili
+                previewImage.src = "https://placehold.co/150x150/e0e7ff/3b82f6?text=Chagua+Picha";
+                fileNameDisplay.textContent = 'Hakuna picha iliyochaguliwa.';
+                previewImage.classList.add('border-dashed', 'border-2', 'border-gray-300');
+            }
+        });
+
+        // Kuzuia fomu kutuma data kwani hakuna backend
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            console.log('Picha imechaguliwa! Inahitaji seva kuihifadhi.');
+            // Badala ya alert, tumia ujumbe wa console
+            alert("Picha imechaguliwa na kuonyeshwa! Unahitaji mfumo wa 'backend' kuhifadhi picha hii kwenye seva.");
+        });
+    </script>
+        <img src="https://via.placeholder.com/150" alt="Picha ya Wasifu" class="profile-photo"> 
+        <p>Karibu! Hapa ndipo picha yako ya duara itaonekana.</p>
+    </div>
+
+    <div class="container">
+        <h2>Ingia (Sign In)</h2>
+        <form action="#" method="POST">
+            <label for="username">Jina la Mtumiaji:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Neno la Siri:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Ingia</button>
+        </form>
+        <p style="margin-top: 15px;">Huna akaunti? <a href="#">Jisajili Hapa</a></p>
+    </div>
+
+</body>
+</html>
